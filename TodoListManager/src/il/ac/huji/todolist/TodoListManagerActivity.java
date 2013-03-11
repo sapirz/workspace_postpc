@@ -28,12 +28,12 @@ public class TodoListManagerActivity extends Activity {
     	
     	listTasks = (ListView)findViewById(R.id.lstTodoItems);
     	
-    	adapter = new ArrayAdapter<Task>(
+    	adapter = /*new ArrayAdapter<Task>(
     			this,
     			android.R.layout.simple_list_item_1,//TODO - change format
     			tasks
-    			);
-    			//new CourseDisplayAdapter(this, courses);
+    			);*/
+    			new TaskDisplayAdapter(this, tasks);
     	listTasks.setAdapter(adapter);
     	////
 	}

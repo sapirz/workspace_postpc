@@ -3,12 +3,11 @@ package il.ac.huji.todolist;
 import java.util.ArrayList;
 import java.util.List;
 
+//import android.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -57,16 +56,18 @@ public class TodoListManagerActivity extends Activity {
     		break;
     	case R.id.menuItemDelete:
     		//TODO - get selected item and remove it from the list
-    		listTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    		/*listTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
     	        public void onItemClick(AdapterView<?> parent, View view,
     	                int position, long id) {
     	            //use POSITION to get item clicked
     	        	adapter.remove(tasks.get(position));
     	        }
-    	    });
-//    		ListView.SelectedItems(0);
-//    		ListView1.Items.Remove(ListView1.SelectedItems(0))
+    	    });*/
+    		Task t = (Task) listTasks.getSelectedItem();
+    		if (t!=null) {
+    			adapter.remove(t);
+			}
     		break;
     	}
     	return true;

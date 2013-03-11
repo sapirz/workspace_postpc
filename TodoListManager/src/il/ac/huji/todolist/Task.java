@@ -7,5 +7,9 @@ public class Task {
 	public Task(String name) {
 		this.taskName = name;
 	}
+	
+	public String toString() {
+		return taskName;	
+	}
 
 }

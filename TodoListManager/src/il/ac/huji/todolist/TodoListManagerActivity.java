@@ -3,7 +3,6 @@ package il.ac.huji.todolist;
 import java.util.ArrayList;
 import java.util.List;
 
-//import android.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

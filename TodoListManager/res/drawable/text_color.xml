@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <color xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <!--
-selector xmlns:android="http://schemas.android.com/apk/res/android" >
-        <item
-            android:id="@+id/blue"
-            android:color="#0000ff"/>
-        <item
-            android:id="@+id/red"
-            android:color="#ff0000"/>
-    </selector> --> 
-
     <item
         android:id="@+id/blue"
         android:color="#0000ff"/>

@@ -3,25 +3,25 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal" >
+    android:gravity="center_horizontal|fill" >
 
     <TextView
-        android:id="@+id/odRow"
+        android:id="@+id/task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="left"
+        android:text="234"
         android:layout_marginLeft="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 <!--             android:textColor="#ff0000"  -->
-
-        <TextView
-            android:id="@+id/evenRow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:text="right"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
             <!-- android:textColor="#0000ff"  -->
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="blabla"
+        android:layout_marginLeft="100dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

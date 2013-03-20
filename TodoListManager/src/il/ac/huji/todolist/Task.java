@@ -1,5 +1,6 @@
 package il.ac.huji.todolist;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Task {
@@ -14,7 +15,8 @@ public class Task {
 	}
 	
 	public String toString() {
-		return taskName;	
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return taskName + "  " + sdf.format(dueDate);	
 	}
 
 }

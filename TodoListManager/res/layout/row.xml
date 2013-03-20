@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout1"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal|fill" >
 
     <TextView
-        android:id="@+id/task"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtTodoTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="234"
         android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-<!--             android:textColor="#ff0000"  -->
-            <!-- android:textColor="#0000ff"  -->
+    <!-- android:textColor="#ff0000" -->
+    <!-- android:textColor="#0000ff" -->
 
     <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtTodoDueDate"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="blabla"
-        android:layout_marginLeft="100dp"
+        android:layout_weight="1"
+        android:text=""
+        android:textAlignment="viewEnd"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

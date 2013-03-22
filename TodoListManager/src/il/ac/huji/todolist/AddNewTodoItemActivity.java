@@ -25,7 +25,7 @@ public class AddNewTodoItemActivity extends Activity {
 					setResult(RESULT_CANCELED);
 					finish();
 				} else {
-					//TODO get date
+					//get date
 					DatePicker datePicker = (DatePicker)findViewById(R.id.datePicker);
 					Date dueDate = null;
 					if (datePicker != null){

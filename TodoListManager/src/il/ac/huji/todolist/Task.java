@@ -8,7 +8,7 @@ public class Task {
 	public String taskName;
 	public Date dueDate;
 	
-	public Task(String name, Date d/*TODO - complete!*/) {
+	public Task(String name, Date d) {
 		this.taskName = name;
 		this.dueDate = d;
 		

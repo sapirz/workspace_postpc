@@ -7,7 +7,11 @@ import java.util.List;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +29,8 @@ public class TodoListManagerActivity extends Activity {
 	private ArrayAdapter<Task> adapter;
 	private List<Task> tasks;
 	private ListView listTasks;
+	private SQLiteDatabase db;
+	private Cursor cursor;
 
 
 	@Override
@@ -38,9 +44,19 @@ public class TodoListManagerActivity extends Activity {
 
 		adapter = new TaskDisplayAdapter(this, tasks);
 
-		listTasks.setAdapter(adapter);
+		//listTasks.setAdapter(adapter); TODO - delete?
 
 		registerForContextMenu(listTasks);
+		
+		DBHelper helper = new DBHelper(this);
+		db = helper.getWritableDatabase();
+
+		cursor = db.query("todo", new String[] { "_id", "title", "due" },
+				null, null, null, null, null);
+		String[] from = { "title", "due" };
+		int[] to = { R.id.txtTodoTitle, R.id.txtTodoDueDate };
+		SimpleCursorAdapter dbAdapter = new SimpleCursorAdapter(this, R.layout.row, cursor, from, to);
+		listTasks.setAdapter(dbAdapter);
 
 	}
 
@@ -112,6 +128,12 @@ public class TodoListManagerActivity extends Activity {
     		String name = data.getStringExtra("title");//will return OK only is the string is not empty!
     		Date d = (Date)data.getSerializableExtra("dueDate");//may be null
     		adapter.add(new Task(name, d));
+    		
+    		ContentValues values = new ContentValues();
+			values.put("title", name);
+			values.put("due", d.getTime());//TODO - change Task's Date to string - don't forget the null option...
+			db.insert("todo", null, values);
+			cursor.requery();
     	}
     }
 	

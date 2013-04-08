@@ -8,6 +8,9 @@
     <string name="menu_Delete">Delete Item</string>
     <string name="menu_Call">Call</string>
     <string name="btn_ok">OK</string>
-        <string name="btn_Cancel">Cancel</string>
+    <string name="btn_Cancel">Cancel</string>
+    <string name="parseApplication">7oGrGTLAmr3XO48HD7WRzNtDaypu1xtSqRSJIZLs</string>
+    <string name="clientKey">zTmXla9Ba045weVI48FmUhGVYPKcekiSBFKbhWOq</string>
+    
 
 </resources>

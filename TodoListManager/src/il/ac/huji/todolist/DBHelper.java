@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
 	public DBHelper(Context context) {
-		super(context, "todo_db", null, 1);
+		super(context, /*"todo_db"*/"todo_db.db", null, 1);//TODO - change!! .db is for view only!
 	}
 
 	

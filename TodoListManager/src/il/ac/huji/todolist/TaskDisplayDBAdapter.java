@@ -2,10 +2,8 @@ package il.ac.huji.todolist;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 //import android.content.Context;
-import android.widget.ArrayAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.content.Context;
 import android.database.Cursor;

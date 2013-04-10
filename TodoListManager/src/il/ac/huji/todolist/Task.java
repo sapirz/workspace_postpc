@@ -13,11 +13,6 @@ public class Task implements ITodoItem{
 		this.dueDate = d;
 		
 	}
-	
-	/*public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return taskName + "  " + sdf.format(dueDate);	
-	}*/
 
 	@Override
 	public String getTitle() {

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
 	public DBHelper(Context context) {
-		super(context, /*"todo_db"*/"todo_db.db", null, 1);//TODO - change!! .db is for view only!
+		super(context, "todo_db", null, 1);
 	}
 
 	
@@ -16,7 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("create table todo ( " +
 				"  _id integer primary key autoincrement, " +
 				"  title text, " +
-				"   due integer);");/*can it be long? TODO*/
+				"   due integer);");
 	}
 
 	@Override

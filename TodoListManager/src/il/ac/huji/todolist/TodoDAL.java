@@ -1,5 +1,6 @@
 package il.ac.huji.todolist;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,22 +11,16 @@ import com.parse.ParseQuery;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
 public class TodoDAL {
 
 	private SQLiteDatabase db;
-	private Cursor cursor;
-
-
+	
 	public TodoDAL(Context context) {
 		DBHelper helper = new DBHelper(context);
 		db = helper.getWritableDatabase();
-
-		cursor = db.query("todo", new String[] { "_id", "title", "due" },
-				null, null, null, null, null);
 
 		Parse.initialize(context, context.getResources().getString(R.string.parseApplication),  
 				context.getResources().getString(R.string.clientKey));
@@ -56,15 +51,48 @@ public class TodoDAL {
 		if (db.insert("todo", null, values) < 0){
 			res = false;
 		}		
-		cursor.requery();
-		parseObject.saveInBackground();//TODO - change to save?
-		
+		try {
+			parseObject.save();
+		} catch (ParseException e) {
+			res = false;
+		}
 		return res;
 	}
 
 	public boolean update(ITodoItem todoItem) { 
-		//TODO
-		return false;
+		boolean res = true;
+		String name = todoItem.getTitle();
+		Date d = todoItem.getDueDate();
+
+		//update parse
+		ParseQuery query = new ParseQuery("todo");
+		query.whereEqualTo("title", name);
+		try {
+			List<ParseObject> objects = query.find();
+			for (ParseObject object : objects) {
+				if(d!=null){
+					object.put("due", d.getTime());
+				}
+				else{
+					object.put("due", null);
+				}
+			}
+		} catch (ParseException e1) {
+			return false;
+		}
+
+		ContentValues values = new ContentValues();
+		values.put("title", name);
+		if(d != null){
+			values.put("due", d.getTime());
+		}
+		else{
+			values.put("due", -1);//what TODO - should be null...
+		}
+		if (db.update("todo", values, "title= ?", new String[]{name}) < 1){
+			res = false;
+		}		
+		return res;
 	}
 
 	public boolean delete(ITodoItem todoItem) { 
@@ -73,8 +101,7 @@ public class TodoDAL {
 		if( db.delete("todo", "title= ?", new String[]{taskName})<=0){
 			return false;
 		}
-		cursor.requery();
-
+		
 		//delete from parse
 		ParseQuery query = new ParseQuery("todo");
 		query.whereEqualTo("title", taskName);
@@ -90,12 +117,21 @@ public class TodoDAL {
 	}
 
 	public List<ITodoItem> all() { 
-		//TODO
-		return null;
+		ParseQuery query = new ParseQuery("todo");
+		List<ITodoItem> items = new ArrayList<ITodoItem>();
+		try {
+			List<ParseObject> objects = query.find();
+			for (ParseObject object : objects) {
+				items.add(new Task(object.getString("title"), new Date(object.getLong("due"))));
+			}
+		} catch (ParseException e1) {
+			return null;
+		}
+		return items;
 	}
 	
-	public Cursor getDBCursor() {
-		return cursor;
+	public SQLiteDatabase getDB() {
+		return db;
 		
 	}
 }

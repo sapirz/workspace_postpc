@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.json.JSONObject;
-
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -26,6 +25,7 @@ public class TodoDAL {
 
 		Parse.initialize(context, context.getResources().getString(R.string.parseApplication),  
 				context.getResources().getString(R.string.clientKey));
+		ParseUser.enableAutomaticUser();
 
 	}
 
@@ -65,14 +65,6 @@ public class TodoDAL {
 		String name = todoItem.getTitle();
 		Date d = todoItem.getDueDate();
 
-		///////////////////////////////////////////
-		System.out.println("in update... ");//TODO - delete!!!!!
-		if (d == null)
-			System.out.println("d is null");
-		else
-			System.out.println("d is NOT null");
-		/////////////////////////////////////////////////
-		
 		//update parse
 		ParseQuery query = new ParseQuery("todo");
 		query.whereEqualTo("title", name);
@@ -83,10 +75,9 @@ public class TodoDAL {
 					object.put("due", d.getTime());
 				}
 				else{
-					//TODO - find a way to updare
-					object.put("due",  JSONObject.NULL);//TODO - check!!!!
-					res = false;//TODO - can't update null value.
+					object.remove("due");
 				}
+				object.save();
 			}
 		} catch (ParseException e1) {
 			return false;

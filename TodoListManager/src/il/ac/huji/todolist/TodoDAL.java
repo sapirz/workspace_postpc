@@ -46,7 +46,6 @@ public class TodoDAL {
 		}
 		else{
 			values.put("due", -1/*null*/);//what TODO - should be null...
-			parseObject.put("due", null);
 		}
 		if (db.insert("todo", null, values) < 0){
 			res = false;
@@ -74,7 +73,7 @@ public class TodoDAL {
 					object.put("due", d.getTime());
 				}
 				else{
-					object.put("due", null);
+					return false;//TODO - can't update null value.
 				}
 			}
 		} catch (ParseException e1) {

@@ -24,8 +24,13 @@ public class TaskDisplayDBAdapter extends SimpleCursorAdapter {
 
 	private View changeView(Cursor c, View v){
 		String taskName = c.getString(1);
-		long d = c.getLong(2);
-		Date date = (d != -1)?new Date(d):null;//TODO- make sure -1 is saved!!	         
+		
+		int index = c.getColumnIndexOrThrow("due");
+		Long d = null;
+		if (!c.isNull(index))
+			d = c.getLong(index);
+		
+		Date date = (d != null)?new Date(d):null;	         
 
 		TextView task = 	(TextView) v.findViewById(R.id.txtTodoTitle);
 		task.setText(taskName);

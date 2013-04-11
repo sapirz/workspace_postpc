@@ -1,6 +1,7 @@
 package il.ac.huji.todolist;
 
 import java.util.Date;
+import java.util.List;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -99,18 +100,18 @@ public class TodoListManagerActivity extends Activity {
 				break;
 			case R.id.menuItemCall:
 				///TODO - delete...
-//				System.out.println("after before:");
-//				List<ITodoItem> l = td.all();
-//				for (ITodoItem iTodoItem : l) {
-//					System.out.println("name = "+iTodoItem.getTitle()+" due date = " + iTodoItem.getDueDate().getTime());
-//				}
-//				td.update(new Task("Call 3", null));
-//				System.out.println("after change:");
-//				l = td.all();
-//				for (ITodoItem iTodoItem : l) {
-//					System.out.println("name = "+iTodoItem.getTitle()+" due date = " + iTodoItem.getDueDate().getTime());
-//				}
-//				cursor.requery();
+				System.out.println("after before:");
+				List<ITodoItem> l = td.all();
+				for (ITodoItem iTodoItem : l) {
+					System.out.println("name = "+iTodoItem.getTitle()+" due date = " + iTodoItem.getDueDate().getTime());
+				}
+				td.update(new Task("Call 3", null));
+				System.out.println("after change:");
+				l = td.all();
+				for (ITodoItem iTodoItem : l) {
+					System.out.println("name = "+iTodoItem.getTitle()+" due date = " + iTodoItem.getDueDate().getTime());
+				}
+				cursor.requery();
 				//////////////////////////////
 				
 				//call!!
@@ -144,6 +145,12 @@ public class TodoListManagerActivity extends Activity {
     		Date d = (Date)data.getSerializableExtra("dueDate");//may be null
     		ITodoItem todoItem = new Task(name, d);
     		td.insert(todoItem);
+    		
+    		//////////
+    		//TODO - delete! try to insert null value...
+    		ITodoItem nullTask = new Task("null task", null);
+    		td.insert(nullTask);
+    		////////////
     		cursor.requery();
     	}
     }
